@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Account, Stormpath } from 'angular-stormpath';
 
 @Component({
-  selector: 'app-root',
+  selector: 'sk-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [Stormpath]
