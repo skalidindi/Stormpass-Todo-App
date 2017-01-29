@@ -24,6 +24,7 @@ app.set('trust proxy', true);
 
 app.use('/', express.static(path.join(__dirname, '..'), {redirect: false}));
 
+
 app.use(function (req, res, next) {
   console.log(new Date, req.method, req.url);
   next();
@@ -40,7 +41,7 @@ app.use(stormpath.init(app, {
     // produces: ['text/html'],
     spa: {
       enabled: true,
-      view: path.join(__dirname, '..', 'index.html')
+      view: path.join(__dirname, '..', 'src', 'index.html')
     },
     me: {
       // enabled: false,
@@ -61,7 +62,7 @@ app.use(stormpath.init(app, {
  */
 app.route('/*')
   .get(function (req, res) {
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'src', 'index.html'));
   });
 
 /**

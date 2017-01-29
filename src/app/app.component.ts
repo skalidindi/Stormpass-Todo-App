@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-
-import { Stormpath, Account } from 'angular-stormpath';
 import { Observable } from 'rxjs';
+import { Account, Stormpath } from 'angular-stormpath';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [Stormpath]
 })
 export class AppComponent {
   title = 'app works!';
