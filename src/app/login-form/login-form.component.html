@@ -1,0 +1,20 @@
+<form class="form-horizontal" #form="ngForm" (ngSubmit)="submitLoginForm(form.value)" autocomplete="off">
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
+        <input class="form-control" name="email" id="loginField" type="text" placeholder="Email" required [(ngModel)]="loginFormModel.login">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
+        <input class="form-control" name="password" id="passwordField" type="password" placeholder="Password" required [(ngModel)]="loginFormModel.password">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  <button id="loginBtn" type="submit" class="btn btn-primary pull-right">Login</button>
+</form>

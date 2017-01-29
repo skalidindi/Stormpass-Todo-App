@@ -1,0 +1,30 @@
+<div class="container">
+  <!-- <div class="row" *ngIf="(user$ | async) === false"> -->
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 *ngIf="loginService.login">
+            Sign In
+          </h4>
+          <h4 *ngIf="loginService.register">
+            Register
+          </h4>
+        </div>
+        <div class="panel-body text-center">
+          <div class="row" *ngIf="loginService.login">
+            <div class="col-xs-12">
+              <sk-login-form></sk-login-form>
+              <a href="" (click)="showRegister(); false">Need an account?</a>
+            </div>
+          </div>
+          <div class="row" *ngIf="loginService.register">
+            <div class="col-xs-12">
+              <sk-register-form autoLogin=true></sk-register-form>
+              <a href="" (click)="showLogin(); false">Already have an account?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</div>
