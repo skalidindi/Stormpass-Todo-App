@@ -22,7 +22,7 @@ app.set('trust proxy', true);
  setup this server before we initialize Stormpath.
  */
 
-app.use('/', express.static(path.join(__dirname, '..'), {redirect: false}));
+app.use('/', express.static(path.join(__dirname, '..', 'dist'), {redirect: false}));
 
 
 app.use(function (req, res, next) {
@@ -41,7 +41,7 @@ app.use(stormpath.init(app, {
     // produces: ['text/html'],
     spa: {
       enabled: true,
-      view: path.join(__dirname, '..', 'src', 'index.html')
+      view: path.join(__dirname, '..', 'dist', 'index.html')
     },
     me: {
       // enabled: false,
@@ -62,7 +62,7 @@ app.use(stormpath.init(app, {
  */
 app.route('/*')
   .get(function (req, res) {
-    res.sendFile(path.join(__dirname, '..', 'src', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
   });
 
 /**
@@ -72,7 +72,7 @@ app.on('stormpath.ready', function () {
   console.log('Stormpath Ready');
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
   console.log('Application running at http://localhost:' + port);
 });
