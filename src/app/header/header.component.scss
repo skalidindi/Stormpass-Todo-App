@@ -1,0 +1,17 @@
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+
+  ul {
+    margin-top: 1em;
+  }
+}
+
+a {
+  color: #ffffff;
+
+  &:hover {
+    font-weight: normal;
+    text-decoration: none;
+  }
+}

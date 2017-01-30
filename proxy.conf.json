@@ -18,5 +18,9 @@
   "/register": {
     "target": "http://localhost:3000",
     "secure": false
+  },
+  "/token": {
+    "target": "http://localhost:3000",
+    "secure": false
   }
 }

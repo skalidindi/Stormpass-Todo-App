@@ -1,13 +1,21 @@
 'use strict';
 
-var express = require('express');
-var path = require('path');
-var stormpath = require('express-stormpath');
+const express = require('express');
+const path = require('path');
+const stormpath = require('express-stormpath');
+const bodyParser = require('body-parser');
+const admin = require("firebase-admin");
+const serviceAccount = require("./service-account.json");
+
+const fbAppRef = admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://todo-app-83ff7.firebaseio.com"
+});
 
 /**
  * Create the Express application.
  */
-var app = express();
+const app = express();
 
 /**
  * The 'trust proxy' setting is required if you will be deploying your
@@ -21,9 +29,7 @@ app.set('trust proxy', true);
  angular application.  We don't need to authenticate those requests, so we
  setup this server before we initialize Stormpath.
  */
-
 app.use('/', express.static(path.join(__dirname, '..'), {redirect: false}));
-
 
 app.use(function (req, res, next) {
   console.log(new Date, req.method, req.url);
@@ -38,20 +44,32 @@ console.log('Initializing Stormpath');
 
 app.use(stormpath.init(app, {
   web: {
-    // produces: ['text/html'],
+    produces: ['application/json'],
     spa: {
       enabled: true,
       view: path.join(__dirname, '..', 'src', 'index.html')
     },
     me: {
-      // enabled: false,
       expand: {
-        customData: true,
-        groups: true
+        customData: true
       }
     }
   }
 }));
+
+app.post('/token', bodyParser.json(), stormpath.authenticationRequired, function (req, res) {
+  const fullName = req.body.fullName;
+  const uid = req.body.uid;
+  const fbAppAuth = fbAppRef.auth();
+
+  return fbAppAuth.createCustomToken(uid, {
+      name: fullName
+  }).then(function(token) {
+    res.status(200);
+    res.json({ token: token, status: 200 });
+    res.end();
+  });
+});
 
 /**
  * Now that our static file server and Stormpath are configured, we let Express
@@ -72,7 +90,7 @@ app.on('stormpath.ready', function () {
   console.log('Stormpath Ready');
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, function () {
   console.log('Application running at http://localhost:' + port);
 });

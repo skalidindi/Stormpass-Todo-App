@@ -1,0 +1,14 @@
+<div class="todo-item">
+    <ul class="list-group">
+      <li class="list-group-item clearfix" [ngClass]="{'completed': todo.completed }">
+        <span>{{todo.title}}</span>
+        <div class="pull-right" role="group">
+          <button type="button" class="btn btn-xs btn-success img-circle" (click)="toggleStatus()">
+            ✓
+          </button><span> </span>
+          <button type="button" class="btn btn-xs btn-danger img-circle" (click)="remove.emit()">
+            Ｘ
+          </button></div>
+      </li>
+    </ul>
+</div>

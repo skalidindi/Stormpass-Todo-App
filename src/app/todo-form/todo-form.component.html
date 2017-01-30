@@ -1,0 +1,6 @@
+<div class="input-group">
+  <input [(ngModel)]="title" type="text" class="form-control add-todo" placeholder="What needs to be done?" required autocomplete="off" autofocus (keyup.enter)="addTodo()">
+  <span class="input-group-btn">
+    <button class="btn btn-primary" type="button" (click)="addTodo()">Add todo</button>
+  </span>
+</div>

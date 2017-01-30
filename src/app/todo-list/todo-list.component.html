@@ -1,1 +1,25 @@
-<h1>TODO LIST</h1>
+<ul id="sortable" class="list-unstyled">
+  <sk-todo-item
+    *ngFor="let todo of todos | async"
+    [todo]="todo"
+    (remove)="remove.emit(todo)"
+    (update)="update.emit({todo: todo, changes: $event})"></sk-todo-item>
+  <!-- <li class="ui-state-default" >
+    <div class="checkbox">
+        <label>
+          <input type="checkbox" value="" />Apples</label>
+    </div>
+  </li>
+  <li class="ui-state-default">
+    <div class="checkbox">
+        <label>
+          <input type="checkbox" value="" />Buy bread</label>
+    </div>
+  </li>
+  <li class="ui-state-default">
+    <div class="checkbox">
+        <label>
+          <input type="checkbox" value="" />Teach penguins to fly</label>
+    </div>
+  </li> -->
+</ul>

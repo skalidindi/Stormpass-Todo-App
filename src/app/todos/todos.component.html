@@ -1,0 +1,7 @@
+<sk-todo-form (createTodo)="todoService.createTodo($event)"></sk-todo-form>
+<sk-todo-list
+  [todos]="todoService.todos$"
+  (remove)="todoService.removeTodo($event)"
+  (update)="todoService.updateTodo($event.todo, $event.changes)"
+  >
+</sk-todo-list>
