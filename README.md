@@ -1,31 +1,20 @@
-# StormpathTodoApp
+Sample todo app utilizing storm path for user authentication. Built with angular 2, bootstrap
+and firebase.
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
+Feedback about stormpath
+Overall, I was able to use the get up and going with basic auth relatively quick. However, I
+spend a lot of time in figuring out how extend stormpath-express with custom properties. I did
+not know how to get Express to extend the '/me' endpoint to return my own custom firebase token.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+In the end, I simply created a new endpoint to create and endpoint given a user id and name.
+However, it would of been nice to build that from the GET '/me' call itself.
 
-## Code scaffolding
+One plaguing issue is that logout is kind of hairy. Mainly due to firebase logout throwing errors
+regarding permissions when calling its logout method. See comments in home.component.ts for
+more info.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+Deployed on heroku @ https://todo-stormpath-app.herokuapp.com
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Resources Used
+https://github.com/stormpath/stormpath-sdk-angular
+https://github.com/stormpath/express-stormpath
