@@ -47,7 +47,6 @@ export class FirebaseService {
           Observable.throw(new Error('expected an account response'));
         }
       })
-      // .map(this.accountTransformer)
       .catch((error: any) => {
         if (error.status && error.status === 401) {
           return Observable.of(false);
